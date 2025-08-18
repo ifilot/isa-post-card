@@ -11,7 +11,7 @@
     (via_costs 50)
     (plane_via_costs 5)
     (start_ripup_costs 100)
-    (start_pass_no 4340)
+    (start_pass_no 1854)
     (layer_rule F.Cu
       (active on)
       (preferred_direction horizontal)
@@ -63,13 +63,13 @@
     )
   )
   (class "kicad_default"
-    "unconnected-(J4-NC-Pad6)" GND "unconnected-(J4-NC-Pad7)" TCK TMS TDI +5V TDO
+    +5V GND "unconnected-(J4-NC-Pad6)" "unconnected-(J4-NC-Pad7)" TCK TMS TDI TDO
     "unconnected-(J4-NC-Pad8)" "unconnected-(RN1-R1-Pad2)" "unconnected-(RN1-R2-Pad3)" "Net-(RN1-R4)" "unconnected-(RN1-R3-Pad4)" "Net-(RN2-R5)" "unconnected-(RN2-R1-Pad2)" "unconnected-(RN2-R3-Pad4)"
-    "Net-(RN2-R6)" "Net-(RN2-R8)" "Net-(RN2-R4)" "Net-(RN2-R7)" "unconnected-(RN2-R2-Pad3)" SA3 SA0 "Net-(RN3-R2.2)"
-    SA1 "Net-(RN3-R1.2)" "Net-(RN3-R3.2)" "Net-(RN3-R4.2)" SA2 SA6 "Net-(RN4-R4.2)" "Net-(RN4-R3.2)"
-    SA7 "Net-(RN4-R2.2)" SA5 "Net-(RN4-R1.2)" SA4 "Net-(RN5-R1.2)" "Net-(RN5-R4.2)" "Net-(RN5-R2.2)"
-    SB2 SB1 SB0 SB3 "Net-(RN5-R3.2)" "Net-(RN6-R4.2)" SB5 "Net-(RN6-R3.2)"
-    SB6 SB7 SB4 "Net-(RN6-R1.2)" "Net-(RN6-R2.2)" A4 A2 ~{SEL1}
+    "Net-(RN2-R6)" "Net-(RN2-R8)" "Net-(RN2-R4)" "Net-(RN2-R7)" "unconnected-(RN2-R2-Pad3)" SA3 SA0 "Net-(RN3D-R4.1)"
+    SA1 "Net-(RN3C-R3.1)" "Net-(RN3B-R2.1)" "Net-(RN3A-R1.1)" SA2 SA6 "Net-(RN4B-R2.1)" "Net-(RN4C-R3.1)"
+    SA7 "Net-(RN4D-R4.1)" SA5 "Net-(RN4A-R1.1)" SA4 "Net-(RN5B-R2.1)" "Net-(RN5C-R3.1)" "Net-(RN5D-R4.1)"
+    SB2 SB1 SB0 SB3 "Net-(RN5A-R1.1)" "Net-(RN6D-R4.1)" SB5 "Net-(RN6A-R1.1)"
+    SB6 SB7 SB4 "Net-(RN6B-R2.1)" "Net-(RN6C-R3.1)" A4 A2 ~{SEL1}
     A1 AEN A3 A0 A6 A5 A7 A9
     ~{SEL2} A8 D1 "unconnected-(U3-I{slash}GCLK1-Pad43)" "unconnected-(U3-I{slash}O{slash}PD1-Pad11)" D7 D2 "unconnected-(U3-I{slash}O{slash}PD2-Pad25)"
     "unconnected-(U3-I{slash}OE2{slash}GCLK2-Pad2)" D0 D3 D6 D5 ~{IOW} D4 RES
