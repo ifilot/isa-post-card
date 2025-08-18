@@ -9,3 +9,5 @@ gerbers/
 *.hex
 *.lst
 *.bin
+*.zip
+*.lck

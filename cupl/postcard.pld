@@ -1,0 +1,122 @@
+Name     ATF1502ASV;
+PartNo   00;
+Date     08/18/2025;
+Revision 1.0;
+Designer Ivo Filot;
+Company  None;
+Assembly None;
+Location None;
+Device   f1502plcc44;
+
+PROPERTY ATMEL {POWER_RESET = OFF};
+PROPERTY ATMEL {PIN_KEEP = ON};
+PROPERTY ATMEL {PREASSIGN = KEEP};
+
+/** ------------------------------------------------------------------------**/
+/** IMPORTANT NOTES WHEN FLASHING                                           **/
+/** - When ATMISP is crashing when opening a .JED file, ensure it is        **/
+/**   located in a short and simple file path without any spaces present.   **/
+/**   in ATMISP.                                                            **/
+/** - When changes have been made to the .JED file, always reload the file  **/
+/**   in ATMISP.                                                            **/
+/** - The ATDH1150USB device has two ports, port 0 should use the WINUSB    **/
+/**   driver while port 1 should use the FTDI BUS driver. This can be       **/
+/**   configured using Zadig.                                               **/
+/** ------------------------------------------------------------------------**/
+
+PIN  1 = RES;
+PIN  4 = SA0;
+PIN  5 = SA1;
+PIN  6 = SA2;
+PIN  8 = SA3;
+PIN  9 = SA4;
+PIN 12 = SA5;
+PIN 14 = SA6;
+PIN 16 = SA7;
+PIN 17 = SB0;
+PIN 18 = SB1;
+PIN 19 = SB2;
+PIN 20 = SB3;
+PIN 21 = SB4;
+PIN 24 = SB5;
+PIN 26 = SB6;
+PIN 27 = SB7;
+PIN 28 = SEL1_N;
+PIN 29 = D0;
+PIN 31 = D1;
+PIN 33 = D2;
+PIN 34 = D3;
+PIN 36 = D4;
+PIN 37 = D5;
+PIN 39 = D6;
+PIN 40 = D7;
+PIN 41 = SEL2_N;
+PIN 44 = IOW_N;
+
+/** Buried states **/
+Pinnode = [Q7..Q0];
+
+/** Latch data **/
+[Q7..Q0].d = [D7..D0];
+[Q7..Q0].ck = !SEL1_N & !SEL2_N & !IOW_N;
+[Q7..Q0].ar = RES;
+
+/* -------------------- Equality minterms (upper nibble Q7..Q4) ----------- */
+U_EQ0  = !Q7 & !Q6 & !Q5 & !Q4;
+U_EQ1  = !Q7 & !Q6 & !Q5 &  Q4;
+U_EQ2  = !Q7 & !Q6 &  Q5 & !Q4;
+U_EQ3  = !Q7 & !Q6 &  Q5 &  Q4;
+U_EQ4  = !Q7 &  Q6 & !Q5 & !Q4;
+U_EQ5  = !Q7 &  Q6 & !Q5 &  Q4;
+U_EQ6  = !Q7 &  Q6 &  Q5 & !Q4;
+U_EQ7  = !Q7 &  Q6 &  Q5 &  Q4;
+U_EQ8  =  Q7 & !Q6 & !Q5 & !Q4;
+U_EQ9  =  Q7 & !Q6 & !Q5 &  Q4;
+U_EQ10 =  Q7 & !Q6 &  Q5 & !Q4;
+U_EQ11 =  Q7 & !Q6 &  Q5 &  Q4;
+U_EQ12 =  Q7 &  Q6 & !Q5 & !Q4;
+U_EQ13 =  Q7 &  Q6 & !Q5 &  Q4;
+U_EQ14 =  Q7 &  Q6 &  Q5 & !Q4;
+U_EQ15 =  Q7 &  Q6 &  Q5 &  Q4;
+
+/* -------------------- Equality minterms (lower nibble Q3..Q0) ----------- */
+L_EQ0  = !Q3 & !Q2 & !Q1 & !Q0;
+L_EQ1  = !Q3 & !Q2 & !Q1 &  Q0;
+L_EQ2  = !Q3 & !Q2 &  Q1 & !Q0;
+L_EQ3  = !Q3 & !Q2 &  Q1 &  Q0;
+L_EQ4  = !Q3 &  Q2 & !Q1 & !Q0;
+L_EQ5  = !Q3 &  Q2 & !Q1 &  Q0;
+L_EQ6  = !Q3 &  Q2 &  Q1 & !Q0;
+L_EQ7  = !Q3 &  Q2 &  Q1 &  Q0;
+L_EQ8  =  Q3 & !Q2 & !Q1 & !Q0;
+L_EQ9  =  Q3 & !Q2 & !Q1 &  Q0;
+L_EQ10 =  Q3 & !Q2 &  Q1 & !Q0;
+L_EQ11 =  Q3 & !Q2 &  Q1 &  Q0;
+L_EQ12 =  Q3 &  Q2 & !Q1 & !Q0;
+L_EQ13 =  Q3 &  Q2 & !Q1 &  Q0;
+L_EQ14 =  Q3 &  Q2 &  Q1 & !Q0;
+L_EQ15 =  Q3 &  Q2 &  Q1 &  Q0;
+
+/* -------------------- 7-seg decode (COMMON-CATHODE) --------------------- */
+/* Wiring per your note: A..G + DP -> bit 0..7 on each display.
+   Segment ON = 1 for common-cathode. DP held OFF (0). */
+
+/* Upper digit (Q7..Q4) -> SAx */
+SA0 =  ( U_EQ0 # U_EQ2 # U_EQ3 # U_EQ5 # U_EQ6 # U_EQ7 # U_EQ8 # U_EQ9 # U_EQ10 # U_EQ12 # U_EQ14 # U_EQ15 );     /* A */
+SA1 =  ( U_EQ0 # U_EQ1 # U_EQ2 # U_EQ3 # U_EQ4 # U_EQ7 # U_EQ8 # U_EQ9 # U_EQ10 # U_EQ13 );                       /* B */
+SA2 =  ( U_EQ0 # U_EQ1 # U_EQ3 # U_EQ4 # U_EQ5 # U_EQ6 # U_EQ7 # U_EQ8 # U_EQ9 # U_EQ10 # U_EQ11 # U_EQ13 );      /* C */
+SA3 =  ( U_EQ0 # U_EQ2 # U_EQ3 # U_EQ5 # U_EQ6 # U_EQ8 # U_EQ9 # U_EQ10 # U_EQ11 # U_EQ12 # U_EQ13 # U_EQ14 );    /* D */
+SA4 =  ( U_EQ0 # U_EQ2 # U_EQ6 # U_EQ8 # U_EQ10 # U_EQ11 # U_EQ12 # U_EQ13 # U_EQ14 );                            /* E */
+SA5 =  ( U_EQ0 # U_EQ4 # U_EQ5 # U_EQ6 # U_EQ8 # U_EQ9 # U_EQ10 # U_EQ11 # U_EQ12 # U_EQ14 # U_EQ15 );            /* F */
+SA6 =  ( U_EQ2 # U_EQ3 # U_EQ4 # U_EQ5 # U_EQ6 # U_EQ8 # U_EQ9 # U_EQ10 # U_EQ11 # U_EQ13 # U_EQ14 # U_EQ15 );    /* G */
+SA7 = 'b'0;                                                                                                       /* DP off */
+
+/* Lower digit (Q3..Q0) -> SBx */
+SB0 =  ( L_EQ0 # L_EQ2 # L_EQ3 # L_EQ5 # L_EQ6 # L_EQ7 # L_EQ8 # L_EQ9 # L_EQ10 # L_EQ12 # L_EQ14 # L_EQ15 );     /* A */
+SB1 =  ( L_EQ0 # L_EQ1 # L_EQ2 # L_EQ3 # L_EQ4 # L_EQ7 # L_EQ8 # L_EQ9 # L_EQ10 # L_EQ13 );                       /* B */
+SB2 =  ( L_EQ0 # L_EQ1 # L_EQ3 # L_EQ4 # L_EQ5 # L_EQ6 # L_EQ7 # L_EQ8 # L_EQ9 # L_EQ10 # L_EQ11 # L_EQ13 );      /* C */
+SB3 =  ( L_EQ0 # L_EQ2 # L_EQ3 # L_EQ5 # L_EQ6 # L_EQ8 # L_EQ9 # L_EQ10 # L_EQ11 # L_EQ12 # L_EQ13 # L_EQ14 );    /* D */
+SB4 =  ( L_EQ0 # L_EQ2 # L_EQ6 # L_EQ8 # L_EQ10 # L_EQ11 # L_EQ12 # L_EQ13 # L_EQ14 );                            /* E */
+SB5 =  ( L_EQ0 # L_EQ4 # L_EQ5 # L_EQ6 # L_EQ8 # L_EQ9 # L_EQ10 # L_EQ11 # L_EQ12 # L_EQ14 # L_EQ15 );            /* F */
+SB6 =  ( L_EQ2 # L_EQ3 # L_EQ4 # L_EQ5 # L_EQ6 # L_EQ8 # L_EQ9 # L_EQ10 # L_EQ11 # L_EQ13 # L_EQ14 # L_EQ15 );    /* G */
+SB7 = 'b'0;                                                                                                       /* DP off */
